@@ -69,7 +69,28 @@
                 android:id="@+id/tv_param"
                 />
         </LinearLayout>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           >
 
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:textColor="#666666"
+               android:hint="输入建议"
+               android:textSize="12sp"
+               android:textColorHint="#919191"
+               />
+           <Button
+               android:layout_width="60dp"
+               android:layout_height="40dp"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentBottom="true"
+               android:text="发送"
+               android:textSize="11sp"
+               />
+       </RelativeLayout>
 
     </LinearLayout>
 
