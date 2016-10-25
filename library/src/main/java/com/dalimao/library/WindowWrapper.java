@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
-
+import com.dalimao.library.util.DeviceInfoUtil;
 
 
 /**
@@ -27,11 +29,23 @@ public abstract class WindowWrapper {
     protected Window mAnchorWindow;
     private Bundle mParams;
     public boolean isCreated = false;
-
+    protected StandOutLayoutParams mStandOutLayoutParams;
     public WindowWrapper(StandOutWindowManager manager, int id) {
         mWindowManager = manager;
         mContext = manager.getContext();
         WindowId = id;
+        mStandOutLayoutParams  = new StandOutLayoutParams(mContext, WindowManager.LayoutParams.TYPE_PHONE, onRequestWindowFlags(),
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                0, 0);
+    }
+
+    public StandOutLayoutParams getStandOutLayoutParams() {
+        return mStandOutLayoutParams;
+    }
+
+    public void setStandOutLayoutParams(StandOutLayoutParams mStandOutLayoutParams) {
+        this.mStandOutLayoutParams = mStandOutLayoutParams;
     }
 
     /**

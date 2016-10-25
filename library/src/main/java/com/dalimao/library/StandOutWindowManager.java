@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,6 +17,7 @@ import com.dalimao.library.util.Utils;
 import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.logging.Handler;
 
 public class StandOutWindowManager {
 
@@ -272,6 +274,13 @@ public class StandOutWindowManager {
         show(cls, args, null);
     }
 
+    public void showView(View view, Bundle args, int gravity) {
+        final WindowWrapper wrapper = getWindowWrapper(CommonWindowWrapper.class, null , view.getClass().hashCode());
+        StandOutLayoutParams params = wrapper.getStandOutLayoutParams();
+        params.gravity = gravity;
+        wrapper.setStandOutLayoutParams(params);
+        showWrapper(wrapper, args, null, view);
+    }
     /**
      *
      * @param view
@@ -280,7 +289,24 @@ public class StandOutWindowManager {
 
     public void showView(View view, Bundle args){
 
+        showView(view, args, 0, 0);
+    }
+
+    /**
+     *
+     * @param view
+     * @param args
+     * @param x
+     * @param y
+     */
+
+    public void showView(View view, Bundle args, int x ,int y){
+
         final WindowWrapper wrapper = getWindowWrapper(CommonWindowWrapper.class, null , view.getClass().hashCode());
+        StandOutLayoutParams params = wrapper.getStandOutLayoutParams();
+        params.x = x;
+        params.y = y;
+        wrapper.setStandOutLayoutParams(params);
         showWrapper(wrapper, args, null, view);
     }
 
@@ -360,7 +386,17 @@ public class StandOutWindowManager {
         } else {
             window = new Window(wrapper);
         }
+        if (child != null){
+            window.addView(child);
+            if (args != null) {
+                try {
+                    ((ParamReceiver)child).onParamReceive(args);
+                } catch (ClassCastException e) {
+                    Log.e(TAG, "Your custom view must implement ParamReceiver, or you can not receive params!");
+                }
 
+            }
+        }
         if (window.visibility == Window.VISIBILITY_VISIBLE) {
 //            String msg = "Tried to show " + cls.getSimpleName()+ " that is already shown.";
 //            if (DEBUG) {
@@ -382,9 +418,7 @@ public class StandOutWindowManager {
         wrapper.onShown(window, args);
         // get the params corresponding to the id
         StandOutLayoutParams params = window.getLayoutParams();
-        if (child != null){
-            window.addView(child);
-        }
+
 
         try {
 
@@ -610,23 +644,12 @@ public class StandOutWindowManager {
         try {
             View windowContent = window.getChildAt(0);
             if (animation != null && windowContent!=null) {  // animate
-                AnimationSet animationSet = new AnimationSet(false);
-                animationSet.setAnimationListener(new Animation.AnimationListener() {
-
+                new android.os.Handler().postDelayed(new Runnable() {
                     @Override
-                    public void onAnimationStart(Animation animation) {
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
+                    public void run() {
                         removeWindowView(id, window, wrapper);
                     }
-                });
-                animationSet.addAnimation(animation);
+                }, animation.getDuration());
                 windowContent.startAnimation(animation);
 
             } else {
@@ -994,4 +1017,6 @@ public class StandOutWindowManager {
 
 
     }
+
+
 }

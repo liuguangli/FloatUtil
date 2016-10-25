@@ -17,6 +17,7 @@ import com.dalimao.library.util.DeviceInfoUtil;
 public class CommonWindowWrapper extends WindowWrapper {
     private Animation mAnimationShowContainer;
     private Animation mAnimationCloseWindow;
+
     private boolean mAnimating;
 
     public CommonWindowWrapper(StandOutWindowManager manager, Integer id) {
@@ -30,13 +31,8 @@ public class CommonWindowWrapper extends WindowWrapper {
 
     @Override
     public StandOutLayoutParams onRequestLayoutParams() {
-        int screenHeight = DeviceInfoUtil.getScreenLongSize(mContext);
-        int screenWidth = DeviceInfoUtil.getScreenShortSize(mContext);
-        StandOutLayoutParams params  = new StandOutLayoutParams(mContext, WindowManager.LayoutParams.TYPE_TOAST, onRequestWindowFlags(),
-                screenWidth,
-                screenHeight,
-                0, 0);
-        return params;
+
+        return mStandOutLayoutParams;
     }
 
     @Override
@@ -60,15 +56,6 @@ public class CommonWindowWrapper extends WindowWrapper {
 
     private void updateOrInitAnimation() {
 
-        Point point = new Point(DeviceInfoUtil.getScreenShortSize(getContext()) / 2, DeviceInfoUtil.getScreenLongSize(getContext()) / 2);
-        float endx = new Float(point.x)/new Float(DeviceInfoUtil.getScreenLongSize(getContext()));
-        float endy = new Float(point.y)/new Float(DeviceInfoUtil.getScreenShortSize(getContext())+0.1f);
-        if (endx < 0){
-            endx = 0;
-        }
-        if (endy < 0){
-            endy = 0;
-        }
 
         if (mAnimationCloseWindow != null){
             mAnimationCloseWindow.cancel();
@@ -78,7 +65,7 @@ public class CommonWindowWrapper extends WindowWrapper {
         }
 
         mAnimationCloseWindow = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f, Animation.RELATIVE_TO_SELF,
-                endx, Animation.RELATIVE_TO_SELF,endy);
+                0.5f, Animation.RELATIVE_TO_SELF,0.5f);
         mAnimationCloseWindow.setFillAfter(true);
         mAnimationCloseWindow.setDuration(300);
         mAnimationCloseWindow.setAnimationListener(new Animation.AnimationListener() {
@@ -91,6 +78,7 @@ public class CommonWindowWrapper extends WindowWrapper {
             public void onAnimationEnd(Animation animation) {
                 mAnimating = false;
 
+
             }
 
             @Override
@@ -100,9 +88,9 @@ public class CommonWindowWrapper extends WindowWrapper {
         });
 
 
-        mAnimationShowContainer = new ScaleAnimation(0, 1.0f, 0, 1.0f, Animation.RELATIVE_TO_SELF,
-                endx, Animation.RELATIVE_TO_SELF,
-                endy);
+        mAnimationShowContainer = new ScaleAnimation(0.1f, 1.0f, 0.1f, 1.0f, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF,
+                0.5f);
         mAnimationShowContainer.setFillAfter(true);
         mAnimationShowContainer.setDuration(300);
         mAnimationShowContainer.setAnimationListener(new Animation.AnimationListener() {

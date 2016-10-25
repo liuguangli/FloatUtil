@@ -166,64 +166,7 @@ public final class Window extends FrameLayout {
 
 
 
-    public Window(Context context, View content, StandOutLayoutParams params) {
-        super(context);
 
-        mContext = context;
-
-
-        this.id = View.class.hashCode();
-        this.originalParams = params;
-        this.flags = StandOutFlags.FLAG_BODY_MOVE_ENABLE
-                | StandOutFlags.FLAG_WINDOW_HIDE_ENABLE
-                | StandOutFlags.FLAG_WINDOW_BRING_TO_FRONT_ON_TAP
-                | StandOutFlags.FLAG_WINDOW_EDGE_LIMITS_ENABLE;;
-        this.touchInfo = new TouchInfo();
-        touchInfo.ratio = (float) originalParams.width / originalParams.height;
-        this.data = new Bundle();
-
-        // create the window contents
-        content.setId(android.R.id.content);
-        addView(content);
-
-        mLongPressRunnable = new Runnable() {
-
-            @Override
-            public void run() {
-                if (mWindowWrapper.handleLongClick()){
-                    touchInfo.isLongPress = true;
-                    mWindowWrapper.onLongPressed();
-                }
-            }
-        };
-
-        content.setOnTouchListener(new OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                // pass all touch events to the implementation
-                boolean consumed = false;
-
-                final StandOutWindowManager windowManager = mWindowWrapper.getWindowManager();
-
-
-                dispatchLongPress(event);
-                // handle move and bring to front
-                consumed = windowManager.onTouchHandleMove(Window.this, v, event)
-                        || consumed;
-
-                // alert implementation
-                consumed = mWindowWrapper.onTouchBody(Window.this, v, event)
-                        || consumed;
-
-                return consumed;
-            }
-        });
-        // attach the existing tag from the frame to the window
-        setTag(content.getTag());
-
-    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {

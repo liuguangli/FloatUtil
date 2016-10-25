@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FloateUtil</string>
+    <string name="add_simple_view">显示一个简单的浮窗，showFloatView(View view)。</string>
+    <string name="btn_show">显示</string>
+    <string name="title">标题</string>
 </resources>
