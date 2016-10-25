@@ -1,12 +1,14 @@
 package com.dalimao.library;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 
@@ -289,27 +291,45 @@ public class StandOutWindowManager {
 
     public void showView(View view, Bundle args){
 
-        showView(view, args, 0, 0);
+        showView(view, args, Gravity.TOP | Gravity.LEFT, WindowManager.LayoutParams.TYPE_PHONE);
     }
 
     /**
      *
      * @param view
      * @param args
-     * @param x
-     * @param y
+     * @param gravity
+     * @param type
      */
 
-    public void showView(View view, Bundle args, int x ,int y){
+    public void showView(View view, Bundle args, int gravity ,int type){
 
         final WindowWrapper wrapper = getWindowWrapper(CommonWindowWrapper.class, null , view.getClass().hashCode());
         StandOutLayoutParams params = wrapper.getStandOutLayoutParams();
-        params.x = x;
-        params.y = y;
+        params.gravity = gravity;
+        params.type = type;
         wrapper.setStandOutLayoutParams(params);
         showWrapper(wrapper, args, null, view);
     }
+    /**
+     *
+     * @param view
+     * @param args
+     * @param gravity
+     * @param type
+     */
 
+    public void showView(View view, Bundle args, int gravity , int type, Point point){
+
+        final WindowWrapper wrapper = getWindowWrapper(CommonWindowWrapper.class, null , view.getClass().hashCode());
+        StandOutLayoutParams params = wrapper.getStandOutLayoutParams();
+        params.gravity = gravity;
+        params.type = type;
+        params.x = point.x;
+        params.y = point.y;
+        wrapper.setStandOutLayoutParams(params);
+        showWrapper(wrapper, args, null, view);
+    }
     /**
      * open a window and pass it a anchor window object <p>
      * or you can close the anchor window by pass it's wrapper class and closeAnchor with true, before open the target window
@@ -643,13 +663,14 @@ public class StandOutWindowManager {
         // remove window
         try {
             View windowContent = window.getChildAt(0);
-            if (animation != null && windowContent!=null) {  // animate
+            if (animation != null && windowContent != null) {  // animate
                 new android.os.Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         removeWindowView(id, window, wrapper);
                     }
                 }, animation.getDuration());
+
                 windowContent.startAnimation(animation);
 
             } else {

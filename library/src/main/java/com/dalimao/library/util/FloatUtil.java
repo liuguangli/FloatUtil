@@ -3,6 +3,7 @@ package com.dalimao.library.util;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +18,8 @@ import com.dalimao.library.WindowWrapper;
  * Created by liuguangli on 16/10/21.
  */
 public class FloatUtil {
+
+    private static final String TAG = "FloatUtil";
 
     /**
      * 显示浮窗，默认对齐方式：左上，默认浮窗层级：TYPE_PHONE,需要权限：SYSTEM_ALERT_WINDOW。
@@ -52,23 +55,52 @@ public class FloatUtil {
      */
 
     public static void showFloatView(View view,int gravity, int type, Bundle args) {
-
+        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type);
     }
 
     /**
-     * 显示浮窗，对齐方式，左上
-     * @param View
+     * 显示浮窗，对齐方式
+     * @param view
      * @param type 浮窗层级
      * @param point 坐标点
+     * @param args
      */
 
-    public static void showFloate(View View, int type, Point point) {
-
+    public static void showFloate(View view, int gravity,int type, Point point, Bundle args) {
+        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point);
     }
 
-    public static void hideFloatView(Context context , Class<? extends View> cls) {
-        StandOutWindowManager.getInstance(context).hideView(cls, false);
+
+    /**
+     * 智能浮窗：更加系统版本、机型自动选择浮窗类型（type），绕过权限的限制
+     * @param view
+     * @param gravity
+     * @param point
+     * @param args
+     */
+
+    public static void showSmartFloate(View view, int gravity, Point point, Bundle args) {
+
+
+        int type = SmartFloatUtil.askType(view.getContext());
+        Log.d(TAG, "showSmartFloate:type=" + type);
+        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point);
     }
+
+
+    /**
+     *
+     * @param context
+     * @param cls
+     * @param cache 是否缓存
+     */
+
+
+
+    public static void hideFloatView(Context context , Class<? extends View> cls, boolean cache) {
+        StandOutWindowManager.getInstance(context).hideView(cls, cache);
+    }
+
 
 
 }

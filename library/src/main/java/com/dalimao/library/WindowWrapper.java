@@ -2,6 +2,7 @@ package com.dalimao.library;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +39,7 @@ public abstract class WindowWrapper {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 0, 0);
+        mStandOutLayoutParams.gravity = Gravity.TOP | Gravity.LEFT;
     }
 
     public StandOutLayoutParams getStandOutLayoutParams() {

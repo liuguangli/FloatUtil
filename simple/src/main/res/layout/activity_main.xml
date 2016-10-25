@@ -10,21 +10,152 @@
     android:orientation="vertical"
     tools:context="com.dalimao.floateutil.MainActivity">
 
-      <TextView
+      <ScrollView
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/add_simple_view"
-          android:textSize="11sp"
-          />
-      <Button
-          android:layout_width="80dp"
-          android:layout_height="40dp"
-          android:text="@string/btn_show"
-          android:textSize="11sp"
-          android:onClick="addSimpleView"
-          />
+          android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleView"
+                      />
 
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
 
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_param"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleViewWithParam"
+                      />
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
 
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_gravity"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleViewWithGravity"
+                      />
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_type"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleViewWithType"
+                      />
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_point"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleViewWithPoint"
+                      />
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_smart"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addSimpleSmartFloatView"
+                      />
+
+                  <View
+                      android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@color/colorPrimaryDark"
+                      android:layout_margin="12dp"
+                      />
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_simple_view_with_drag"
+                      android:textSize="11sp"
+                      />
+                  <Button
+                      android:layout_width="80dp"
+                      android:layout_height="40dp"
+                      android:text="@string/btn_show"
+                      android:textSize="11sp"
+                      android:onClick="addDragView"
+                      />
+            </LinearLayout>
+      </ScrollView>
 </LinearLayout>

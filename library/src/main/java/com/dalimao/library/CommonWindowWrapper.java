@@ -53,6 +53,15 @@ public class CommonWindowWrapper extends WindowWrapper {
 
         updateOrInitAnimation();
     }
+    @Override
+    public boolean handleOutSideAction() {
+        if (mAnimating) {
+            return super.handleOutSideAction();
+        }
+
+
+        return super.handleOutSideAction();
+    }
 
     private void updateOrInitAnimation() {
 

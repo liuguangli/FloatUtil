@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">FloateUtil</string>
-    <string name="add_simple_view">显示一个简单的浮窗，showFloatView(View view)。</string>
+    <string name="add_simple_view">显示一个简单的浮窗，默认使用 TYPE_PHONE 类型浮窗，showFloatView(View view, null)。</string>
     <string name="btn_show">显示</string>
     <string name="title">标题</string>
+    <string name="add_simple_view_with_param">
+
+        显示一个简单的浮窗，默认使用 TYPE_PHONE 类型浮窗，传递一个 Bundle 参数 ，showFloatView(View view,Bundle bundle)。
+    </string>
+    <string name="add_simple_view_with_gravity">
+
+        显示一个简单的浮窗，默认使用 TYPE_PHONE 类型浮窗，传递一个 Bundle 参数 ，指定对齐方式为居中对齐,
+        FloatUtil.showFloatView(floatView, Gravity.CENTER, bundle);。
+    </string>
+  <string name="add_simple_view_with_type">
+
+        显示一个简单的浮窗，默认使用 TYPE_PHONE 类型浮窗，传递一个 Bundle 参数 ，指定对齐方式为居中对齐,指定浮窗层级为 WindowManager.LayoutParams.TYPE_TOAST,
+      FloatUtil.showFloatView(floatView, Gravity.CENTER, WindowManager.LayoutParams.TYPE_PHONE, bundle);。
+    </string>
+    <string name="param">参数：</string>
+    <string name="add_simple_view_with_point">
+        显示一个简单的浮窗，默认使用 TYPE_PHONE 类型浮窗，传递一个 Bundle 参数 ，指定对齐方式为居中对齐,指定浮窗层级为 WindowManager.LayoutParams.TYPE_TOAST,
+        指定坐标 point(x,y)
+      FloatUtil.showFloatView(floatView, Gravity.CENTER, WindowManager.LayoutParams.TYPE_TOAST, point, bundle);。</string>
+    <string name="add_simple_view_with_smart">添加智能浮窗，智能的意思是自动根据当前系统版本和机型选择何时的 type ，绕过系统权限限制使用浮窗</string>
+    <string name="add_simple_view_with_drag">添加一个可拖动的浮窗，拖动的方法在自定义的 View 中实现</string>
 </resources>
