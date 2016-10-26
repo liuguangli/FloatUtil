@@ -68,6 +68,8 @@ FloatUtil 提供了一个接口：ParamReceiver。你自定义的 View 实现这
         // 居中对齐，浮窗层级为 WindowManager.LayoutParams.TYPE_TOAST
         FloatUtil.showFloatView(floatView, Gravity.CENTER,WindowManager.LayoutParams.TYPE_TOAST , null);
         
+![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/float_center.gif)        
+        
 浮窗类型 type 决定了浮窗的层级，关于浮窗层级的详细理解可以参考我的博客:[《浮窗开发之窗口层级》](http://www.liuguangli.win/archives/476),
 Android 系统对窗体的某些层级有权限限制，例如 WindowManager.LayoutParams.TYPE_PHONE 类型的窗体需要授权。
 
