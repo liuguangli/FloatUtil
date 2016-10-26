@@ -1,7 +1,7 @@
 # FloatUtil
 一个简单的浮窗工具。封装了浮窗的使用方法，并作了系统、版本的兼容处理，帮你绕过权限的限制。
 
-# 开始
+## 开始
 项目使用 [jitpack](https://jitpack.io) 做开源库的托管，你需要在 .gradle 中添加  [jitpack](https://jitpack.io) 
 的仓库。
 
@@ -18,7 +18,7 @@
     dependencies {
          compile 'com.github.liuguangli:FloatUtil:master-SNAPSHOT'
     }
-# 使用方法
+## 使用方法
 
 ### 创建一个简单的浮窗
     SimpleView floatView = new SimpleView(this);
@@ -77,7 +77,7 @@ FloatUtil 提供智能方式添加浮窗，针对特定的系统版本、机型�
         
 ### 高级用法        
 
-# MIT License
+## MIT License
 
 Copyright (c) 2016 刘光利
 
