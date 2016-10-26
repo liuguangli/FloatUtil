@@ -84,7 +84,7 @@ FloatUtil 提供智能方式添加浮窗，针对特定的系统版本、机型�
         Point point = new Point();
         point.x = 0;
         point.y = 0;
-        FloatUtil.showSmartFloate(floatView, Gravity.CENTER, point, bundle);
+        FloatUtil.showSmartFloat(floatView, Gravity.CENTER, point, bundle);
                 
 
 ## MIT License
