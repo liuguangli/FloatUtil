@@ -1,6 +1,6 @@
 ## FloatUtil
 一个简单的浮窗工具。封装了浮窗的使用方法，并作了系统、版本的兼容处理，帮你绕过权限的限制。
-
+![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/float_drag.gif)
 ### 开始
 项目使用 [jitpack](https://jitpack.io) 做开源库的托管，你需要在 .gradle 中添加  [jitpack](https://jitpack.io) 
 的仓库。
@@ -26,6 +26,8 @@
       FloatUtil.showFloatView(floatView, null);
     
 SimpleView 是你自定义的 View，就这么简单，浮窗显示出来了。
+
+![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/simple_float.gif)
     
 ### 关闭浮窗
 
@@ -57,6 +59,8 @@ FloatUtil 提供了一个接口：ParamReceiver。你自定义的 View 实现这
         bundle.putString(SimpleViewWitchParam.PARAM, "我是传过来的参数");
         FloatUtil.showFloatView(floatView, bundle);
         
+![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/float_param.gif)        
+        
 ### 指定层级和对齐方式
        
         SimpleViewWitchParam floatView = new SimpleViewWitchParam(this);
@@ -66,7 +70,7 @@ FloatUtil 提供了一个接口：ParamReceiver。你自定义的 View 实现这
 浮窗类型 type 决定了浮窗的层级，关于浮窗层级的详细理解可以参考我的博客:[《浮窗开发之窗口层级》](http://www.liuguangli.win/archives/476),
 Android 系统对窗体的某些层级有权限限制，例如 WindowManager.LayoutParams.TYPE_PHONE 类型的窗体需要授权。
 
-* 智能浮窗（突破授权）
+### 智能浮窗（突破授权）
 
 FloatUtil 提供智能方式添加浮窗，针对特定的系统版本、机型为你选择合适的浮窗 type ，越过授权（详细参考我的博客：[越过用户授权使用浮窗](http://www.liuguangli.win/archives/484))，你不需要再去关注复杂的处理过程。
    
@@ -78,8 +82,7 @@ FloatUtil 提供智能方式添加浮窗，针对特定的系统版本、机型�
         point.x = 0;
         point.y = 0;
         FloatUtil.showSmartFloate(floatView, Gravity.CENTER, point, bundle);
-        
-### 高级用法        
+                
 
 ## MIT License
 
