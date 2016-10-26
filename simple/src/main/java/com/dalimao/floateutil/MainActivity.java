@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import com.dalimao.library.util.FloatUtil;
 
@@ -112,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         Point point = new Point();
         point.x = 100;
         point.y = 300;
-        FloatUtil.showFloate(floatView, Gravity.TOP, WindowManager.LayoutParams.TYPE_TOAST, point, bundle);
+        FloatUtil.showFloatView(floatView, Gravity.TOP, WindowManager.LayoutParams.TYPE_TOAST, point, bundle);
         floatView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         Point point = new Point();
         point.x = 0;
         point.y = 0;
-        FloatUtil.showSmartFloate(floatView, Gravity.CENTER, point, bundle);
+        FloatUtil.showSmartFloat(floatView, Gravity.CENTER, point, bundle);
         floatView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,10 +144,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 添加一个可以拖动的View
+     *
+     * @param view
+     */
 
     public void addDragView(View view) {
         FloatBallView floatBallView = new FloatBallView(this);
-        addSimpleView(floatBallView);
+        FloatUtil.showFloatView(floatBallView, Gravity.LEFT | Gravity.TOP, WindowManager.LayoutParams.TYPE_TOAST,new Point(0,0), null, true);
+
+        SimpleView simpleView = new SimpleView(this);
+        FloatUtil.showSmartFloat(simpleView, Gravity.LEFT | Gravity.TOP, new Point(0,0), null, true);
+
+        simpleView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FloatUtil.hideFloatView(MainActivity.this, SimpleView.class, false);
+                Log.d(TAG, "close");
+            }
+        });
     }
 
     @Override

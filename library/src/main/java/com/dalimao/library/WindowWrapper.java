@@ -31,6 +31,8 @@ public abstract class WindowWrapper {
     private Bundle mParams;
     public boolean isCreated = false;
     protected StandOutLayoutParams mStandOutLayoutParams;
+    protected boolean canMove;
+
     public WindowWrapper(StandOutWindowManager manager, int id) {
         mWindowManager = manager;
         mContext = manager.getContext();
@@ -40,6 +42,14 @@ public abstract class WindowWrapper {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 0, 0);
         mStandOutLayoutParams.gravity = Gravity.TOP | Gravity.LEFT;
+    }
+
+    public boolean isCanMove() {
+        return canMove;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 
     public StandOutLayoutParams getStandOutLayoutParams() {

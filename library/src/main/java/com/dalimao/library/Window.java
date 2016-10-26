@@ -433,19 +433,21 @@ public final class Window extends FrameLayout {
 
                 if (Utils.isSet(flags,
                         StandOutFlags.FLAG_WINDOW_EDGE_LIMITS_ENABLE)) {
-                    // if gravity is not TOP|LEFT throw exception
-                    if (mParams.gravity != (Gravity.TOP | Gravity.LEFT)) {
-                        throw new IllegalStateException(
-                                "The window "
-                                        + id
-                                        + " gravity must be TOP|LEFT if FLAG_WINDOW_EDGE_LIMITS_ENABLE or FLAG_WINDOW_EDGE_TILE_ENABLE is set.");
-                    }
+
 
                     // keep window inside edges
-                    mParams.x = Math.min(Math.max(mParams.x, 0), DeviceInfoUtil.getScreenLongSize(getContext())
-                            - mParams.width);
-                    mParams.y = Math.min(Math.max(mParams.y, 0), DeviceInfoUtil.getScreenShortSize(getContext())
-                            - mParams.height);
+                    if (DeviceInfoUtil.getOrientation(getContext()) == DeviceInfoUtil.LANDSCAPE){
+                        mParams.x = Math.min(Math.max(mParams.x, 0), DeviceInfoUtil.getScreenLongSize(getContext())
+                                - mParams.width);
+                        mParams.y = Math.min(Math.max(mParams.y, 0), DeviceInfoUtil.getScreenShortSize(getContext())
+                                - mParams.height);
+                    } else {
+                        mParams.y = Math.min(Math.max(mParams.y, 0), DeviceInfoUtil.getScreenLongSize(getContext())
+                                - mParams.width);
+                        mParams.x = Math.min(Math.max(mParams.x, 0), DeviceInfoUtil.getScreenShortSize(getContext())
+                                - mParams.height);
+                    }
+
                 } else if (Utils.isSet(flags,
                         StandOutFlags.FLAG_WINDOW_EDGE_Y_LIMITS_ENABLE)) {
                     // if gravity is not TOP|LEFT throw exception

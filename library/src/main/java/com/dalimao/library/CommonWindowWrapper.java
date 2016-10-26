@@ -2,6 +2,8 @@ package com.dalimao.library;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -19,6 +21,7 @@ public class CommonWindowWrapper extends WindowWrapper {
     private Animation mAnimationCloseWindow;
 
     private boolean mAnimating;
+
 
     public CommonWindowWrapper(StandOutWindowManager manager, Integer id) {
         super(manager, id);
@@ -44,6 +47,12 @@ public class CommonWindowWrapper extends WindowWrapper {
                 | StandOutFlags.FLAG_WINDOW_EDGE_LIMITS_ENABLE;
 
     }
+
+    @Override
+    protected boolean onPrepareMove(Window window, View view, MotionEvent event) {
+        return !canMove;
+    }
+
     @Override
     public void onCreateAndAttachView(FrameLayout frame) {
 

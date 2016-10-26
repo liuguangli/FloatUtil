@@ -283,6 +283,7 @@ public class StandOutWindowManager {
         wrapper.setStandOutLayoutParams(params);
         showWrapper(wrapper, args, null, view);
     }
+
     /**
      *
      * @param view
@@ -321,7 +322,22 @@ public class StandOutWindowManager {
 
     public void showView(View view, Bundle args, int gravity , int type, Point point){
 
+        showView(view, args, gravity, type, point, false);
+    }
+
+    /**
+     *
+     * @param view
+     * @param args
+     * @param gravity
+     * @param type
+     * @param point
+     * @param drag
+     */
+
+    public void showView(View view, Bundle args, int gravity, int type, Point point, boolean drag) {
         final WindowWrapper wrapper = getWindowWrapper(CommonWindowWrapper.class, null , view.getClass().hashCode());
+        wrapper.setCanMove(drag);
         StandOutLayoutParams params = wrapper.getStandOutLayoutParams();
         params.gravity = gravity;
         params.type = type;
@@ -330,6 +346,7 @@ public class StandOutWindowManager {
         wrapper.setStandOutLayoutParams(params);
         showWrapper(wrapper, args, null, view);
     }
+
     /**
      * open a window and pass it a anchor window object <p>
      * or you can close the anchor window by pass it's wrapper class and closeAnchor with true, before open the target window
@@ -406,7 +423,7 @@ public class StandOutWindowManager {
         } else {
             window = new Window(wrapper);
         }
-        if (child != null){
+        if (child != null && cachedWindow == null){
             window.addView(child);
             if (args != null) {
                 try {
@@ -1038,6 +1055,7 @@ public class StandOutWindowManager {
 
 
     }
+
 
 
 }

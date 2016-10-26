@@ -66,11 +66,23 @@ public class FloatUtil {
      * @param args
      */
 
-    public static void showFloate(View view, int gravity,int type, Point point, Bundle args) {
-        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point);
+    public static void showFloatView(View view, int gravity, int type, Point point, Bundle args) {
+        showFloatView(view, gravity, type, point, args, false);
     }
 
+    /**
+     *
+     * @param view
+     * @param gravity
+     * @param type
+     * @param point
+     * @param args
+     * @param drag 是否可拖动
+     */
 
+    public static void showFloatView(View view, int gravity,int type, Point point, Bundle args , boolean drag) {
+        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point , drag);
+    }
     /**
      * 智能浮窗：更加系统版本、机型自动选择浮窗类型（type），绕过权限的限制
      * @param view
@@ -79,15 +91,26 @@ public class FloatUtil {
      * @param args
      */
 
-    public static void showSmartFloate(View view, int gravity, Point point, Bundle args) {
+    public static void showSmartFloat(View view, int gravity, Point point, Bundle args) {
 
 
-        int type = SmartFloatUtil.askType(view.getContext());
-        Log.d(TAG, "showSmartFloate:type=" + type);
-        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point);
+        showSmartFloat(view, gravity, point, args, false);
     }
 
+    /**
+     *
+     * @param view
+     * @param gravity
+     * @param point
+     * @param args
+     * @param drag
+     */
 
+    public static void showSmartFloat(View view, int gravity, Point point, Bundle args, boolean drag) {
+        int type = SmartFloatUtil.askType(view.getContext());
+        Log.d(TAG, "showSmartFloat:type=" + type);
+        StandOutWindowManager.getInstance(view.getContext()).showView(view, args , gravity , type, point, drag);
+    }
     /**
      *
      * @param context
@@ -100,7 +123,6 @@ public class FloatUtil {
     public static void hideFloatView(Context context , Class<? extends View> cls, boolean cache) {
         StandOutWindowManager.getInstance(context).hideView(cls, cache);
     }
-
 
 
 }
