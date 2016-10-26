@@ -1,7 +1,6 @@
 # FloatUtil
 An easy util for floatWindow 
-# LICENSE
-MIT License
+# MIT License
 
 Copyright (c) 2016 刘光利
 
