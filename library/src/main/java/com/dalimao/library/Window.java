@@ -513,11 +513,10 @@ public final class Window extends FrameLayout {
             case MotionEvent.ACTION_UP:
                 //释放了
                 removeCallbacks(mLongPressRunnable);
-                if(Math.abs(mLastMotionX - x) <= TOUCH_SLOP
-                        && Math.abs(mLastMotionY - y) <= TOUCH_SLOP) {
-                    if (!touchInfo.isLongPress) {
-                        handleOnClick();
-                    }
+                if(!isMoved && !touchInfo.isLongPress) {
+
+                    handleOnClick();
+
                 }
 
                 break;
