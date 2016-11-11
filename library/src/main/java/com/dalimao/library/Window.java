@@ -75,7 +75,7 @@ public final class Window extends FrameLayout {
     }
 
     private WindowWrapper mWindowWrapper;
-
+    private View.OnClickListener mOnClickListener;
     private int mLastMotionX, mLastMotionY;
     //是否移动了
     private boolean isMoved;
@@ -83,6 +83,10 @@ public final class Window extends FrameLayout {
     private Runnable mLongPressRunnable;
     //移动的阈值
     private static final int TOUCH_SLOP = 20;
+
+
+
+
 
     public Window(WindowWrapper windowWrapper) {
         super(windowWrapper.getContext());
@@ -152,6 +156,10 @@ public final class Window extends FrameLayout {
         windowWrapper.isCreated = true;
     }
 
+
+    public OnClickListener getOnClickListener() {
+        return mOnClickListener;
+    }
     @Override
     public void addView(View child) {
         FrameLayout content = (FrameLayout) findViewById(android.R.id.content);
@@ -505,10 +513,30 @@ public final class Window extends FrameLayout {
             case MotionEvent.ACTION_UP:
                 //释放了
                 removeCallbacks(mLongPressRunnable);
+                if(Math.abs(mLastMotionX - x) <= TOUCH_SLOP
+                        && Math.abs(mLastMotionY - y) <= TOUCH_SLOP) {
+                    if (!touchInfo.isLongPress) {
+                        handleOnClick();
+                    }
+                }
+
                 break;
         }
         return !isMoved;
     }
 
-
+    private void handleOnClick(){
+        ViewGroup content = (ViewGroup) findViewById(android.R.id.content);
+        if (content == null) {
+         return;
+        }
+        View child = content.getChildAt(0);
+        if (child instanceof ListenerGetAble) {
+            mOnClickListener = ((ListenerGetAble)child).getOnclickListener();
+            if (mOnClickListener != null) {
+                mOnClickListener.onClick(getChildAt(0));
+            }
+        }
+    };
 }
+

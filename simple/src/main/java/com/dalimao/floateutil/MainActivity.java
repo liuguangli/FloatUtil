@@ -154,13 +154,18 @@ public class MainActivity extends AppCompatActivity {
         FloatBallView floatBallView = new FloatBallView(this);
         FloatUtil.showFloatView(floatBallView, Gravity.LEFT | Gravity.TOP, WindowManager.LayoutParams.TYPE_TOAST,new Point(0,0), null, true);
 
-        SimpleView simpleView = new SimpleView(this);
+        SimpleViewWitchParam simpleView = new SimpleViewWitchParam(this);
         FloatUtil.showSmartFloat(simpleView, Gravity.LEFT | Gravity.TOP, new Point(0,0), null, true);
-
+        floatBallView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FloatUtil.hideFloatView(MainActivity.this, FloatBallView.class, false);
+            }
+        });
         simpleView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FloatUtil.hideFloatView(MainActivity.this, SimpleView.class, false);
+                FloatUtil.hideFloatView(MainActivity.this, SimpleViewWitchParam.class, false);
                 Log.d(TAG, "close");
             }
         });
