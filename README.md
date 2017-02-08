@@ -3,7 +3,7 @@
 
 ![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/float_drag.gif)
 ## 开始
-项目使用 [jitpack](https://jitpack.io) 做开源库的托管，你需要在 .gradle 中添加  [jitpack](https://jitpack.io) （翻墙）
+项目使用 [jitpack](https://jitpack.io) 做开源库的托管，你需要在 .gradle 中添加  [jitpack](https://jitpack.io) 
 的仓库。
 
     allprojects {
