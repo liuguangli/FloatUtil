@@ -510,6 +510,7 @@ public final class Window extends FrameLayout {
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
+
             case MotionEvent.ACTION_UP:
                 //释放了
                 removeCallbacks(mLongPressRunnable);

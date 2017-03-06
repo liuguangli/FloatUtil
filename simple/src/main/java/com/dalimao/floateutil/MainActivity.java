@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FloatUtil.hideFloatView(MainActivity.this, FloatBallView.class, false);
+                Log.d(TAG, "onClick");
             }
         });
         simpleView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
