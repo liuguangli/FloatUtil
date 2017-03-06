@@ -1,5 +1,6 @@
 ## FloatUtil
 [![](https://jitpack.io/v/liuguangli/FloatUtil.svg)](https://jitpack.io/#liuguangli/FloatUtil)
+
 一个简单的浮窗工具。封装了浮窗的使用方法，并做了系统、版本的兼容处理，帮你绕过权限的限制。
 
 ![浮窗](https://github.com/liuguangli/FloatUtil/blob/master/files/float_drag.gif)
